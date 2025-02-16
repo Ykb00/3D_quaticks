@@ -29,7 +29,8 @@ jobs:
 
       - name: Build and push Docker image to Google Container Registry
         run: |
-          gcloud builds submit --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-app .
+          gcloud builds submit --config cloudbuild.yaml \
+            --substitutions=_NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }},_NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Deploy to Google Cloud Run
         run: |
@@ -38,3 +39,6 @@ jobs:
             --platform managed \
             --region ${{ secrets.GCP_REGION }} \
             --allow-unauthenticated
+
+      - name: Verify deployment
+        run: gcloud run services list --region ${{ secrets.GCP_REGION }}
