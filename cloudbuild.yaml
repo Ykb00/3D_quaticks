@@ -12,8 +12,8 @@ steps:
     args:
       - '-c'
       - |
-        export NEXT_PUBLIC_SUPABASE_URL="https://pdcbzxohtjosfeibqjmz.supabase.co"
-        export NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2J6eG9odGpvc2ZlaWJxam16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1ODI2NjQsImV4cCI6MjA1NDE1ODY2NH0.zPoNcVre2qyGTcF4rxYXAbNraQq9AhxYv2nGiVkyOfM"
+        export NEXT_PUBLIC_SUPABASE_URL=https://pdcbzxohtjosfeibqjmz.supabase.co
+        export NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2J6eG9odGpvc2ZlaWJxam16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1ODI2NjQsImV4cCI6MjA1NDE1ODY2NH0.zPoNcVre2qyGTcF4rxYXAbNraQq9AhxYv2nGiVkyOfM
         npm run build
 
   # Step 3: Build the Docker image
