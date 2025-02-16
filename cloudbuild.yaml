@@ -1,5 +1,11 @@
 steps:
-  # Step 1: Build the Next.js app
+  # Step 1: Install Dependencies
+  - name: 'node:18'
+    id: 'Install Dependencies'
+    entrypoint: npm
+    args: ['install']
+
+  # Step 2: Build the Next.js app
   - name: 'node:18'
     id: 'Build App'
     entrypoint: npm
@@ -8,17 +14,17 @@ steps:
       - 'NEXT_PUBLIC_SUPABASE_URL=${_NEXT_PUBLIC_SUPABASE_URL}'
       - 'NEXT_PUBLIC_SUPABASE_ANON_KEY=${_NEXT_PUBLIC_SUPABASE_ANON_KEY}'
 
-  # Step 2: Build the Docker image
+  # Step 3: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Build Docker Image'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-app', '.']
 
-  # Step 3: Push the image to Google Container Registry
+  # Step 4: Push the image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Push Image to GCR'
     args: ['push', 'gcr.io/$PROJECT_ID/my-app']
 
-  # Step 4: Deploy to Google Cloud Run
+  # Step 5: Deploy to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: 'Deploy to Cloud Run'
     entrypoint: gcloud
@@ -30,6 +36,11 @@ steps:
       - '--platform=managed'
       - '--region=${_GCP_REGION}'
       - '--allow-unauthenticated'
+
+substitutions:
+  _GCP_REGION: "us-central1"  # Set this to your desired region
+  _NEXT_PUBLIC_SUPABASE_URL: "${NEXT_PUBLIC_SUPABASE_URL}"
+  _NEXT_PUBLIC_SUPABASE_ANON_KEY: "${NEXT_PUBLIC_SUPABASE_ANON_KEY}"
 
 images:
   - 'gcr.io/$PROJECT_ID/my-app'
