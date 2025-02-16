@@ -7,13 +7,13 @@ steps:
 
   # Step 2: Build the Next.js app with Hardcoded Environment Variables
   # Step 2: Build the Next.js app with Hardcoded Environment Variables
-- name: 'node:18'
-  id: 'Build App'
-  entrypoint: npm
-  args: ['run', 'build']
-  env:
-    - 'NEXT_PUBLIC_SUPABASE_URL=https://pdcbzxohtjosfeibqjmz.supabase.co'
-    - 'NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2J6eG9odGpvc2ZlaWJxam16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1ODI2NjQsImV4cCI6MjA1NDE1ODY2NH0.zPoNcVre2qyGTcF4rxYXAbNraQq9AhxYv2nGiVkyOfM'
+  - name: 'node:18'
+    id: 'Build App'
+    entrypoint: npm
+    args: ['run', 'build']
+    env:
+      - 'NEXT_PUBLIC_SUPABASE_URL=https://pdcbzxohtjosfeibqjmz.supabase.co'
+      - 'NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkY2J6eG9odGpvc2ZlaWJxam16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1ODI2NjQsImV4cCI6MjA1NDE1ODY2NH0.zPoNcVre2qyGTcF4rxYXAbNraQq9AhxYv2nGiVkyOfM'
 
 
   # Step 3: Build the Docker image
