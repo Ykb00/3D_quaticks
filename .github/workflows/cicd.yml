@@ -30,7 +30,7 @@ jobs:
       - name: Build and push Docker image to Google Container Registry
         run: |
           gcloud builds submit --config cloudbuild.yaml \
-            --substitutions=_NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }},_NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+            --substitutions=_NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }},_NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }},_GCP_REGION=${{ secrets.GCP_REGION }}
 
       - name: Deploy to Google Cloud Run
         run: |
